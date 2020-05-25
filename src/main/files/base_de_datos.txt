@@ -1,0 +1,4 @@
+lc123456;Andrea Sarmiento;CC;123456789;PR;X;X;X;21/12/2005
+cs1234560;Cesar Solano;CC;123456789;privada;X;;X;21-12-2005
+;;;
+MD1234564;Mauricio Duarte;CC;9786542;PR;;;X;2005
