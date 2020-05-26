@@ -2,10 +2,12 @@
 package test;
 
 
+import datos.AdministradorJDBC;
+import domain.Administradora;
 import java.util.ArrayList;
 import java.util.List;
 import utils.TextoHerramientas;
-import utils.ValidacionGuardado;
+import utils.Validacion;
 
 
 public class MainClass {
@@ -13,9 +15,11 @@ public class MainClass {
         
         
         TextoHerramientas tx = new TextoHerramientas();
-        ValidacionGuardado validador = new ValidacionGuardado();
+        Validacion validador = new Validacion();
         List<String[]> lista = new ArrayList<>();
         List<String> erroresList = new ArrayList<>();
+        Administradora administradora = new Administradora(); 
+        AdministradorJDBC adminiJDBC = new AdministradorJDBC();
         
         //Obtengo una lista de Arreglos tipo String que contienen la informacion de
         //los objetos
@@ -36,9 +40,17 @@ public class MainClass {
             }
         }
         
-        //Escribo el archivo con todos los errores
-        tx.setTexto(erroresList);
-        
+        //
+        if(erroresList.isEmpty()){
+            for(String[] linea: lista){
+               //si no hay errores en la lista guarda cada registro en la base de datos
+                adminiJDBC.insert(administradora.buildFromArray(linea));
+                
+            }
+        }else{
+            //Si hay escribe un archivo de texto
+            tx.setTexto(erroresList);
+        }
         
     }
 }
